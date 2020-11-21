@@ -3,7 +3,7 @@ import { UserContext } from "../providers/UserProvider";
 import {auth} from "../firebase";
 const Account = () => {
     
-    const user = useContext(UserContext);
+    const {user, loaded} = useContext(UserContext);
 
     if (user == null) {
         return <div></div>
@@ -29,7 +29,6 @@ const Account = () => {
             <h3 className = "italic">{email}</h3>
             </div>
           </div>
-          <button className = "w-full py-3 bg-red-600 mt-4 text-white" onClick = {() => {auth.signOut()}}>Sign out</button>
         </div>
       ) 
   

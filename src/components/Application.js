@@ -11,19 +11,25 @@ import Header from '../components/header';
 import Header2 from '../components/header2';
 
 export default function Application() {
-let user;
-const UserGetter = async function(UserContext) {
-  user = await useContext(UserContext);
-}
 
-user = UserGetter(UserContext);
-//const user = useContext(UserContext);
+// const UserGetter = async function(UserContext) {
+//   let result = await useContext(UserContext);
+//   return result;
+// }
 
+// const user = UserGetter(UserContext);
+
+
+  
+const {user, loaded} = useContext(UserContext);
+console.log(loaded);
+console.log(user)
   return (
-        user ?
+    !loaded ? <div></div> : 
+      (user ?
         <Header2 />
       :
-        <Header />
+        <Header />)
       
   );
 }
