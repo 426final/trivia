@@ -65,4 +65,14 @@ const firebaseConfig = {
 
   }
 
+  export const deleteUser = async () => {
+    let user = firebase.auth().currentUser;
+    user.delete().then(function() {
+      console.log("user deleted!");
+    }).catch(function(error) {
+      console.log(error);
+    });
+
+  }
+
   

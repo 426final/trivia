@@ -50,7 +50,7 @@ export default function Signup() {
       <h1 className="text-3xl mb-2 text-center font-bold">Sign Up</h1>
       <div className="form-border">
         {error !== null && (
-          <div className="py-4 bg-red-600 w-full text-white text-center mb-3">
+          <div className="py-4 bg-red-600 w-full text-center mb-3">
             {error}
           </div>
         )}

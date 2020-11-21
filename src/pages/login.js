@@ -39,7 +39,7 @@ export default function Login() {
     <div className="form-div mt-8">
       <h1 className="text-3xl mb-2 text-center font-bold">Log In</h1>
       <div className="form-border">
-        {error !== null && <div className = "py-4 bg-red-600 w-full text-white text-center mb-3">{error}</div>}
+        {error !== null && <div className = "py-4 bg-red-600 w-full  text-center mb-3">{error}</div>}
         <form className="form">
           <label htmlFor="userEmail" className="block">
             Email:
@@ -80,7 +80,7 @@ export default function Login() {
             Sign up here
           </Link>{" "}
           <br />{" "}
-          <Link to="passwordReset" className="text-blue-500 hover:text-blue-600">
+          <Link to="password-reset" className="text-blue-500 hover:text-blue-600">
             Forgot Password?
           </Link>
         </p>

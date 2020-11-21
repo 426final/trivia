@@ -25,6 +25,10 @@ body a:hover {
   color: #B548EF;
 }
 
+.navbar-light .navbar-nav .nav-link:active, .navbar-light .navbar-nav .nav-link:focus {
+  color: #B548EF;
+}
+
 .home {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -122,5 +126,72 @@ input, select {
 
 label {
   margin: 0;
+}
+
+h2 {
+  font-weight: 300;
+}
+
+.account {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.account .user-info {
+  margin-top: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.account .user-info .info-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 1em;
+}
+
+@media (min-width: 768px) {
+  .account .user-info .info-container {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+}
+
+.account .user-info .info-container .info-item {
+  margin-bottom: 2em;
+}
+
+@media (min-width: 768px) {
+  .account .user-info .info-container .info-item {
+    margin-right: 2em;
+  }
+}
+
+.account .user-info .info-container .user-field {
+  background-color: #f5f5f5;
+  border-radius: 25px;
+  padding: .75em 2em;
 }
 /*# sourceMappingURL=App.css.map */

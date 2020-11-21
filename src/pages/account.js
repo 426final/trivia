@@ -1,22 +1,38 @@
 import React, { useContext } from "react";
 import { UserContext } from "../providers/UserProvider";
 import {auth} from "../firebase";
+import { useHistory } from 'react-router-dom';
+import { deleteUser } from "../firebase";
+
 const Account = () => {
     
     const {user, loaded} = useContext(UserContext);
+    const history = useHistory();
 
     if (user == null) {
         return <div></div>
     } 
     
     const {email} = user;
-
+ 
+    const deleteAccountHandler =  () => {
+        deleteUser();
+    }
   
     return (
 
-        <div>
+        <div className="account">
+            <h1>Account</h1>
             <div className="user-info">
-                <h1>User Information</h1>
+                <h2>User Information</h2> 
+                <div className="info-container">
+                    <div className="user-field info-item">Email: {email}</div>
+                    <button className="info-item button" onClick={event => {history.push('/password-reset')}}>Change Password</button>
+                    <button className="info-item button" onClick={() => {
+                        deleteAccountHandler();
+                        history.push('/');
+                        }} >Delete Account</button>
+                </div>
             </div>
             <div className="saved-questions"></div>
         </div>
