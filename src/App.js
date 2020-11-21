@@ -16,6 +16,8 @@ import Practice from './pages/practice';
 import Play from './pages/play';
 import PasswordReset from './pages/passwordReset'
 import UserProvider from './providers/UserProvider';
+import Feedback from './pages/feedback';
+
 
 function App() {
   return (
@@ -31,6 +33,7 @@ function App() {
             <Route exact path='/practice' component={Practice} />
             <Route exact path='/play' component={Play} />
             <Route exact path='/password-reset' component={PasswordReset} />
+            <Route exact path='/feedback' component={Feedback} />
 
             
         </Switch>

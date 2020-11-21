@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Answers from './Answers';
 
 
@@ -12,13 +12,18 @@ export default function Question(props) {
     const cor = info.correct_answer;
     const key = props.id;
     const answers = [...inc, cor];
-    // console.log(inc);
-    // console.log(answers);
-    // console.log(answers);
-    const [answer, setAnswer] = useState(answers);
     const [selected, setSelected] = useState('');
     let divs = [];
-    answer.forEach((text, index) => {
+
+    const sendSelected = () => {
+        props.callbackFromParent(selected, key);
+    }
+
+    useEffect(() => {
+        sendSelected();
+    })
+
+    answers.forEach((text, index) => {
         if (text == selected) {
             divs.push(<button key={index} className="selected answer" onClick={() => {
                 setSelected(text);

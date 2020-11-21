@@ -51,7 +51,7 @@ export default function Practice() {
         <div className="params">
             <h1 className="text-3xl mb-3 text-center font-bold">New Practice Session</h1>
             <div className="form-div mt-8">
-                <div class="form-border">
+                <div className="form-border">
                 <form className="form">
                     <label htmlFor="questions">
                         Number of Question (1-50):
