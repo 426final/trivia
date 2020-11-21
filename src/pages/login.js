@@ -3,6 +3,7 @@ import Header from '../components/header';
 import { useState } from "react";
 import { auth } from "../firebase";
 import { Link } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 
 
 export default function Login() {
@@ -29,6 +30,8 @@ export default function Login() {
             setPassword(value);
           }
       };
+
+      const history = useHistory();
    
 
   return (
@@ -61,7 +64,10 @@ export default function Login() {
             id="userPassword"
             onChange = {(event) => onChangeHandler(event)}
           />
-          <button className="bg-green-400 hover:bg-green-500 w-full py-2 text-white" onClick = {(event) => {signInWithEmailAndPasswordHandler(event, email, password)}}>
+          <button className="bg-green-400 hover:bg-green-500 w-full py-2 text-white" onClick = {(event) => {
+              signInWithEmailAndPasswordHandler(event, email, password);
+              history.push('/');
+              }}>
             Sign in
           </button>
         </form>

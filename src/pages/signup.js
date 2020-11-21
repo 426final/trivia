@@ -3,7 +3,14 @@ import Header from '../components/header';
 import { useState } from "react";
 import { auth } from "../firebase.js";
 import {generateUserDocument} from '../firebase';
-import { Link } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
+
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
 
 
 export default function Signup() {
@@ -34,6 +41,9 @@ export default function Signup() {
       setPassword(value);
     }
   };
+  
+  const history = useHistory();
+
 
   return (
     <div className="mt-8">
@@ -69,15 +79,16 @@ export default function Signup() {
             id="userPassword"
             onChange={event => onChangeHandler(event)}
           />
-          <Link to='/'>
-            <button type='button'
+          
+            <button tag={Link} to="/" 
                 className="bg-green-400 hover:bg-green-500 w-full py-2 text-white"
                 onClick={event => {
                 createUserWithEmailAndPasswordHandler(event, email, password);
+                history.push('/');
                 }}>
                     Sign up
-                </button>
-          </Link>
+            </button>
+  
            
         </form>
       
