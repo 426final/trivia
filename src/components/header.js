@@ -17,7 +17,7 @@ export default function Header() {
         <div>
             <div>
             <Navbar className="navigation" bg="transparent" expand="lg">
-                <Navbar.Brand as={Link} to="/">Trivia</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/"><img className="navbar-brand" src={require('../assets/navbar-brand.svg')}></img></Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
                 <Navbar.Collapse id="basic-navbar-nav">

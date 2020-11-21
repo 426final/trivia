@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import Header from '../components/header';
 import {getUserDocument} from '../firebase';
 
+
 export default function Home() {
     const [data, setData] = useState({});   
     getUserDocument('0').then(value => {
@@ -9,8 +10,11 @@ export default function Home() {
    })
    
   return (
-      <div>
-        { data.email }
+      <div class="home">
+        <div className="trivia-home-div">
+            <img className="trivia-home" src={require('../assets/trivia-home.svg')}></img>
+        </div>
       </div>
+      
     );
   }

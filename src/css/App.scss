@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;1,100;1,300;1,400;1,500;1,600;1,900&display=swap');
+
+$tablet: 768px;
+$desktop: 1050px;
+$xlarge: 1500px;
+
+@mixin tablet {
+    @media (min-width: #{$tablet}) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: #{$desktop}) {
+        @content;
+    }
+}
+
+@mixin xlarge {
+    @media (min-width: #{$xlarge}) {
+        @content;
+    }
+}
+
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: #7947E8;
+
+    a {
+      color: #EB628C;  
+    }
+    a:hover {
+        color:#B548EF;
+    }
+
+}
+.navbar-brand {
+    width: 40px;
+}
+
+.navbar-light .navbar-nav .nav-link{
+    color: #7947E8;
+}
+.navbar-light .navbar-nav .nav-link:hover{
+    color: #B548EF;
+}
+.home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .trivia-home-div {
+        width: 80%;
+        @include tablet {
+            width: 50%;
+        }
+        @include desktop {
+            width: 40%;
+        }
+        .trivia-home {
+            width: 100%;
+        }
+    }  
+}
+.form-div {
+    display: flex;  
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    .form-border{
+        width: 60%;
+        @include desktop {
+            width: 40%;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;  
+            button {
+                align-self: center;
+            }
+        }
+    }
+}
+
+.button {
+    padding: .75em 2em;
+    color: white;
+    background-color:#EB628C;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 3px 3px 10px 1px #c0c0c0;
+}
+
+.button:hover{
+    background-color: #B548EF;
+}
+
+input {
+    border-radius: 4px;
+
+    border: solid 1px #e0e0e0;
+    background-color: #f5f5f5;
+}

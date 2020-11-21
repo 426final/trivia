@@ -46,21 +46,21 @@ export default function Signup() {
 
 
   return (
-    <div className="mt-8">
+    <div className="form-div mt-8">
       <h1 className="text-3xl mb-2 text-center font-bold">Sign Up</h1>
-      <div className="border border-blue-400 mx-auto w-11/12 md:w-2/4 rounded py-8 px-4 md:px-8">
+      <div className="form-border">
         {error !== null && (
           <div className="py-4 bg-red-600 w-full text-white text-center mb-3">
             {error}
           </div>
         )}
-        <form className="">
+        <form className="form">
           <label htmlFor="userEmail" className="block">
             Email:
           </label>
           <input
             type="email"
-            className="my-1 p-1 w-full"
+            className="my-2 p-2 w-full"
             name="userEmail"
             value={email}
             placeholder="E.g: faruq123@gmail.com"
@@ -72,7 +72,7 @@ export default function Signup() {
           </label>
           <input
             type="password"
-            className="mt-1 mb-3 p-1 w-full"
+            className="mt-2 mb-3 p-2 w-full"
             name="userPassword"
             value={password}
             placeholder="Your Password"
@@ -80,8 +80,8 @@ export default function Signup() {
             onChange={event => onChangeHandler(event)}
           />
           
-            <button tag={Link} to="/" 
-                className="bg-green-400 hover:bg-green-500 w-full py-2 text-white"
+            <button className="button" tag={Link} to="/" 
+                
                 onClick={event => {
                 createUserWithEmailAndPasswordHandler(event, email, password);
                 history.push('/');
