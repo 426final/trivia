@@ -12,6 +12,8 @@ import Home from './pages/home';
 import Login from './pages/login';
 import Signup from './pages/signup';
 import Account from './pages/account';
+import Practice from './pages/practice';
+import Play from './pages/play';
 
 import UserProvider from './providers/UserProvider';
 function App() {
@@ -25,6 +27,8 @@ function App() {
             <Route exact path='/login' component={Login} />
             <Route exact path='/signup' component={Signup} />
             <Route exact path='/account' component={Account} />
+            <Route exact path='/practice' component={Practice} />
+            <Route exact path='/play' component={Play} />
 
             
         </Switch>
