@@ -2,21 +2,20 @@ import React from "react";
 import Header from '../components/header';
 import { useState } from "react";
 import { auth } from "../firebase.js";
-import generateUserDocument from '../firebase';
+import {generateUserDocument} from '../firebase';
 import { Link } from "react-router-dom";
 
 
 export default function Signup() {
-    const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [displayName, setDisplayName] = useState("");
   const [error, setError] = useState(null);
 
   const createUserWithEmailAndPasswordHandler = async (event, email, password) => {
     event.preventDefault();
     try{
       const {user} = await auth.createUserWithEmailAndPassword(email, password);
-      generateUserDocument(user, {displayName});
+      generateUserDocument(user);
     }
     catch(error){
       setError('Error Signing up with email and password');
@@ -24,7 +23,6 @@ export default function Signup() {
       
     setEmail("");
     setPassword("");
-    setDisplayName("");
   };
 
   const onChangeHandler = event => {
@@ -34,8 +32,6 @@ export default function Signup() {
       setEmail(value);
     } else if (name === "userPassword") {
       setPassword(value);
-    } else if (name === "displayName") {
-      setDisplayName(value);
     }
   };
 
@@ -49,18 +45,6 @@ export default function Signup() {
           </div>
         )}
         <form className="">
-          <label htmlFor="displayName" className="block">
-            Display Name:
-          </label>
-          <input
-            type="text"
-            className="my-1 p-1 w-full "
-            name="displayName"
-            value={displayName}
-            placeholder="E.g: Faruq"
-            id="displayName"
-            onChange={event => onChangeHandler(event)}
-          />
           <label htmlFor="userEmail" className="block">
             Email:
           </label>
