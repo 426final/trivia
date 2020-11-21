@@ -3,10 +3,14 @@ import Header from '../components/header';
 import {getUserDocument} from '../firebase';
 
 export default function Home() {
-
+    const [data, setData] = useState({});   
+    getUserDocument('0').then(value => {
+    setData(value);
+   })
+   
   return (
       <div>
-        
+        { data.email }
       </div>
     );
   }
