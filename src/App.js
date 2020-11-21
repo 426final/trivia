@@ -11,6 +11,8 @@ import Header from './components/header';
 import Home from './pages/home';
 import Login from './pages/login';
 import Signup from './pages/signup';
+import Account from './pages/account';
+
 import UserProvider from './providers/UserProvider';
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
             <Route exact path='/' component={Home}/>
             <Route exact path='/login' component={Login} />
             <Route exact path='/signup' component={Signup} />
+            <Route exact path='/account' component={Account} />
 
             
         </Switch>

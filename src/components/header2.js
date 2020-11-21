@@ -5,9 +5,6 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import Home from '../pages/home.js';
-import Login from '../pages/login.js';
-import Signup from '../pages/signup.js';
 import {logUserOut} from '../firebase'
 import { Navbar, NavItem, Nav, Form, FormControl, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';

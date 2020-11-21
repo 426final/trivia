@@ -11,8 +11,14 @@ import Header from '../components/header';
 import Header2 from '../components/header2';
 
 export default function Application() {
-const user = useContext(UserContext);
-console.log('user: ' + user);
+let user;
+const UserGetter = async function(UserContext) {
+  user = await useContext(UserContext);
+}
+
+user = UserGetter(UserContext);
+//const user = useContext(UserContext);
+
   return (
         user ?
         <Header2 />

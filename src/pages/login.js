@@ -32,6 +32,7 @@ export default function Login() {
       };
 
       const history = useHistory();
+      
    
 
   return (
@@ -66,7 +67,7 @@ export default function Login() {
           />
           <button className="bg-green-400 hover:bg-green-500 w-full py-2 text-white" onClick = {(event) => {
               signInWithEmailAndPasswordHandler(event, email, password);
-              history.push('/');
+              history.push('/account');
               }}>
             Sign in
           </button>
