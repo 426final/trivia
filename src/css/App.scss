@@ -98,9 +98,13 @@ body {
     background-color: #B548EF;
 }
 
-input {
+input, select {
     border-radius: 4px;
 
     border: solid 1px #e0e0e0;
     background-color: #f5f5f5;
+}
+
+label {
+    margin: 0;
 }

@@ -49,24 +49,26 @@ export default function Practice() {
 
     return (
         <div className="params">
-            <h1>New Practice Session</h1>
-            <div>
-                <form>
+            <h1 className="text-3xl mb-3 text-center font-bold">New Practice Session</h1>
+            <div className="form-div mt-8">
+                <div class="form-border">
+                <form className="form">
                     <label htmlFor="questions">
                         Number of Question (1-50):
-                        <input 
+                    </label>
+                    <input className="my-2 p-2"
                         type = "text"
                         name = "questions"
                         id = "questions"
                         value = {questions}
                         onChange = {e => updateFormData(e)}
                         required
-                        />
-                    </label>
+                    />
                     
                     <label>
                         Category:
-                        <select
+                    </label>
+                    <select className="my-2 p-2"
                         value={category}
                         onChange = {e => updateFormData(e)}
                         name="category"
@@ -97,11 +99,11 @@ export default function Practice() {
                             <option value="30">Science: Gadgets</option>
                             <option value="31">Entertainment: Japanese Anime &amp; Manga</option>
                             <option value="32">Entertainment: Cartoon &amp; Animations</option>
-                        </select>
-                    </label>
+                    </select>
                     <label>
-                        Difficulty Level:
-                        <select
+                        Difficulty Level:                  
+                    </label>
+                    <select className="my-2 p-2"
                         value={difficulty}
                         onChange = {e => updateFormData(e)}
                         name="difficulty"
@@ -111,11 +113,11 @@ export default function Practice() {
                             <option value="easy">Easy</option>
                             <option value="medium">Medium</option>
                             <option value="hard">Hard</option>
-                        </select>
-                    </label>
+                    </select>
                     <label>
-                        Type of Question:
-                        <select
+                        Type of Question:                    
+                    </label>
+                    <select className="my-2 mb-4 p-2"
                         value={type}
                         onChange = {e => updateFormData(e)}
                         name="type"
@@ -124,9 +126,8 @@ export default function Practice() {
                             <option value="any">Both</option>
                             <option value="multiple">Multiple Choice</option>
                             <option value="boolean">True/False</option>
-                        </select>                        
-                    </label>
-                    <button type="submit" onClick={async e => {
+                    </select>    
+                    <button className="button" type="submit" onClick={async e => {
                         await handleSubmit(e);
                         history.push({
                             pathname: '/play',
@@ -136,6 +137,8 @@ export default function Practice() {
                         Start Playing
                     </button>
                 </form>
+                </div>
+                
             </div>
         </div>
     );

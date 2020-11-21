@@ -69,7 +69,7 @@ export default function Login() {
               signInWithEmailAndPasswordHandler(event, email, password);
               history.push('/account');
               }}>
-            Sign in
+            Log in
           </button>
         </form>
         
