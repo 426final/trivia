@@ -8,11 +8,16 @@ import {
 import Home from '../pages/home.js';
 import Login from '../pages/login.js';
 import Signup from '../pages/signup.js';
+import {logUserOut} from '../firebase'
 import { Navbar, NavItem, Nav, Form, FormControl, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function Header() {
-    
+export default function Header2() {
+
+const logOutHandler = () => {
+    logUserOut();
+}
+
   return (
         <div>
             <div>
@@ -22,27 +27,20 @@ export default function Header() {
 
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
-                    <NavItem eventkey={1} href="/login">
-                    <Nav.Link as={Link} to="/login" >Login</Nav.Link>
+                    <NavItem eventkey={1} href="/practice">
+                    <Nav.Link as={Link} to="/practice" >Practice</Nav.Link>
                     </NavItem>
-                    <NavItem eventkey={1} href="/signup">
-                    <Nav.Link as={Link} to="/signup" >Sign Up</Nav.Link>
+                    <NavItem eventkey={1} href="/account">
+                    <Nav.Link as={Link} to="/account" >Account</Nav.Link>
+                    </NavItem>
+                    <NavItem eventkey={1} href="/">
+                    <Nav.Link as={Link} to="/" onClick={logOutHandler} >Log Out</Nav.Link>
                     </NavItem>
                 </Nav>
                 </Navbar.Collapse>
             </Navbar>
             </div>
-            {/* <div>
-            <Switch>
-                <Route exact path='/' component={Home}/>
-                <Route path='/login' component={Login} />
-                <Route path='/signup' component={Signup} />
-
-                
-            </Switch>
-            </div> */}
+           
         </div>  
   );
 }
-
-

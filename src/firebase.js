@@ -29,7 +29,6 @@ const firebaseConfig = {
   
     if (!snapshot.exists) {
       const { email } = user;
-      console.log("hey")
       try {
         await userRef.set({
           email
@@ -55,5 +54,15 @@ const firebaseConfig = {
       console.error("Error fetching user", error);
     }
   };
+
+  export const logUserOut = async () => {
+    
+    firebase.auth().signOut().then(function() {
+      console.log("Log out Successful");
+    }).catch(function(error) {
+      console.log("Log out unsuccessful");
+    });
+
+  }
 
   

@@ -11,10 +11,11 @@ import Header from './components/header';
 import Home from './pages/home';
 import Login from './pages/login';
 import Signup from './pages/signup';
+import UserProvider from './providers/UserProvider';
 function App() {
   return (
     <div>
-
+      <UserProvider>
       <Router>
         <Application />
         <Switch>
@@ -25,6 +26,7 @@ function App() {
             
         </Switch>
       </Router>
+      </UserProvider>
     </div>
     
   );
