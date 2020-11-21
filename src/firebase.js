@@ -1,7 +1,8 @@
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-import firebase from 'firebase/app';
+import firebase from "firebase/app";
 import 'firebase/firestore';
 import 'firebase/auth';
+//import { functions } from 'firebase';
 
 const firebaseConfig = {
     apiKey: "AIzaSyCYifVeHTnhB0NWe-wT4yKm8CAjNju5B50",
@@ -14,8 +15,42 @@ const firebaseConfig = {
     measurementId: "G-FX4KWX76EK"
   };
 
-  firebase.initializeApp(config)
+  firebase.initializeApp(firebaseConfig)
   export const firestore = firebase.firestore();
   export const auth = firebase.auth();
 
   export default firebase;
+
+  export const generateUserDocument = async (user, additionalData) => {
+    if (!user) return;
+  
+    const userRef = firestore.doc(`users/${user.uid}`);
+    const snapshot = await userRef.get();
+  
+    if (!snapshot.exists) {
+      const { email } = user;
+      try {
+        await userRef.set({
+          email
+        });
+      } catch (error) {
+        console.error("Error creating user document", error);
+      }
+    }
+    return getUserDocument(user.uid);
+  };
+  
+  const getUserDocument = async uid => {
+    if (!uid) return null;
+    try {
+      const userDocument = await firestore.doc(`users/${uid}`).get();
+  
+      return {
+        uid,
+        ...userDocument.data()
+      };
+    } catch (error) {
+      console.error("Error fetching user", error);
+    }
+  };
+  

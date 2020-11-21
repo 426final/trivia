@@ -1,7 +1,11 @@
 import React from "react";
+import Header from '../components/header';
 
 export default function Signup() {
     return (
-      <div>Signup</div>
+      <div>
+        <div>Signup</div>
+      </div>
+      
     );
   }
