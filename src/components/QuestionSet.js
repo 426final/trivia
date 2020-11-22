@@ -26,7 +26,7 @@ function shuffle(array) {
 
 export default function QuestionSet(props) {
     const set = props.data;
-    console.log(set);
+
     set.forEach(question => {
         question.question = he.decode(question.question);
         question.correct_answer = he.decode(question.correct_answer);
@@ -47,10 +47,6 @@ export default function QuestionSet(props) {
         selected_answers[index-1] = data;
         all_choices[index-1] = answer_choices
     }
-    
-    const submitHandler = () => {
-        console.log(selected_answers);
-    }
 
     const object = {
         set: set,
@@ -64,7 +60,6 @@ export default function QuestionSet(props) {
                 <Question callbackFromParent={getAnswer} shuffled={shuffle([...question.incorrect_answers, question.correct_answer])} data={question} key={counter += 1} id={counter}/>
             ))}
             <button type="submit" className="button" onClick={() => {
-                submitHandler();
                 history.push({
                     pathname: '/feedback',
                     state: object

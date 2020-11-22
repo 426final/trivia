@@ -32,7 +32,6 @@ const PasswordReset = () => {
       .catch(() => {
         setError("Error resetting password");
       });
-      console.log(emailHasBeenSent)
   };
   return (
     <div className="form-div mt-8">

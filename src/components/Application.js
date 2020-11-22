@@ -22,8 +22,7 @@ export default function Application() {
 
   
 const {user, loaded} = useContext(UserContext);
-console.log(loaded);
-console.log(user)
+
   return (
     !loaded ? <div></div> : 
       (user ?
