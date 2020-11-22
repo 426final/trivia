@@ -60,7 +60,7 @@ const Account = () => {
         let returnval = [];
 
         all.forEach((question) => {
-            if (question.data.question.includes(query)) {
+            if (question.data.question.toLowerCase().includes(query.toLowerCase())) {
                 returnval.push(question);
             }
         })
