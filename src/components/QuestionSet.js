@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import he from 'he';
 import ReactDOM from 'react-dom';
 import Question from './Question';
 import { Link, useHistory } from "react-router-dom";
@@ -25,6 +26,11 @@ function shuffle(array) {
 
 export default function QuestionSet(props) {
     const set = props.data;
+    console.log(set);
+    set.forEach(question => {
+        question.question = he.decode(question.question);
+    })
+    console.log(set);
 
     let counter = 0;
     let selected_answers = Array(props.data.length).fill("");
@@ -51,7 +57,7 @@ export default function QuestionSet(props) {
     return(
         <div>
             {props.data.map(question => (
-                <Question callbackFromParent={getAnswer} shuffled={shuffle([...question.incorrect_answers, question.correct_answer])}data={question} key={counter += 1} id={counter}/>
+                <Question callbackFromParent={getAnswer} shuffled={shuffle([...question.incorrect_answers, question.correct_answer])} data={question} key={counter += 1} id={counter}/>
             ))}
             <button type="submit" className="button" onClick={() => {
                 submitHandler();
