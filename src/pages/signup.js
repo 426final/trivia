@@ -17,17 +17,18 @@ export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-
+  const history = useHistory();
+  
   const createUserWithEmailAndPasswordHandler = async (event, email, password) => {
     event.preventDefault();
     try{
       const {user} = await auth.createUserWithEmailAndPassword(email, password);
       generateUserDocument(user);
+      history.push('/account');
     }
     catch(error){
       setError('Error Signing up with email and password');
     }
-      
     setEmail("");
     setPassword("");
   };
@@ -42,7 +43,7 @@ export default function Signup() {
     }
   };
   
-  const history = useHistory();
+  
 
 
   return (
@@ -84,7 +85,6 @@ export default function Signup() {
                 
                 onClick={event => {
                 createUserWithEmailAndPasswordHandler(event, email, password);
-                history.push('/');
                 }}>
                     Sign up
             </button>
