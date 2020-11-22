@@ -1,24 +1,34 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../providers/UserProvider";
-import {auth} from "../firebase";
+import { auth, getSaved} from "../firebase";
 import { useHistory } from 'react-router-dom';
 import { deleteUser } from "../firebase";
 
+
 const Account = () => {
-    
     const {user, loaded} = useContext(UserContext);
     const history = useHistory();
+    // const [saved, setSaved] = useState(null);
+    
+    // useEffect(() => {
+    //     const response = async () => {
+    //         console.log(loaded);
+    //         const result = await getSaved();
+    //         console.log(result);
+    //     }
+    //     response();
+    // }, []);
 
     if (user == null) {
         return <div></div>
     } 
-    
+
     const {email} = user;
  
     const deleteAccountHandler =  () => {
         deleteUser();
     }
-  
+
     return (
 
         <div className="account">
@@ -34,7 +44,15 @@ const Account = () => {
                         }} >Delete Account</button>
                 </div>
             </div>
-            <div className="saved-questions"></div>
+            <div className="saved-questions">
+                <button onClick={() => {
+                    getSaved().then(function(querySnapshot) {
+                        querySnapshot.forEach(function(doc) {
+                            console.log(doc.id, " => ", doc.data());
+                        });
+                    });;
+                }}>Load Saved</button>
+            </div>
         </div>
 
         // <div className = "mx-auto w-11/12 md:w-2/4 py-8 px-4 md:px-8">

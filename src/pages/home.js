@@ -4,13 +4,9 @@ import {getUserDocument} from '../firebase';
 
 
 export default function Home() {
-    const [data, setData] = useState({});   
-    getUserDocument('0').then(value => {
-    setData(value);
-   })
    
   return (
-      <div class="home">
+      <div className="home">
         <div className="trivia-home-div">
             <img className="trivia-home" src={require('../assets/trivia-home.svg')}></img>
         </div>

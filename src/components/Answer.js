@@ -1,5 +1,6 @@
 import React from 'react';
-
+import {saveQuestion} from '../firebase';
+ 
 export default function Answer(props) {
     const info = props.data;
     const cat = info.category;
@@ -34,8 +35,8 @@ export default function Answer(props) {
                 <label>{ques}</label>
                 {divs.map((div) => (div))}
             </div>
-            <button className='save' onClick={(info) => {
-                
+            <button className='save' onClick={() => {
+                saveQuestion(info);
             }}>Save</button>
         </div>
     )
