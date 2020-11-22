@@ -10,6 +10,9 @@ const Account = () => {
     const {user, loaded} = useContext(UserContext);
     const history = useHistory();
     const [saved, setSaved] = useState([]);
+    const [answer, setAnswer] = useState('');
+   
+    const [bool, setBool] = useState(true);
 
     if (user == null) {
         return <div></div>
@@ -21,14 +24,28 @@ const Account = () => {
         deleteUser();
     }
 
-    const loadHandler = async () => {
+    const loadHandler = async (event) => {
+        event.target.classList.add('display-none');
         let test = [];
+        
         await getSaved().then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
-                test.push({data: doc.data(), id: doc.id});
+                test.push({data: doc.data(), id: doc.id, isNew: false});
             });
+            setSaved(test);
         });;
-        setSaved(test);
+        setBool(false);
+    }
+    
+    let divs = [];
+    if (saved.length == 0 && bool) {
+        divs = '';
+    } else if (saved.length == 0) {
+        divs = <div><h4>No questions saved.</h4></div>
+    } else {
+        divs = saved.map((obj, index) => (
+            <Answer data={obj.data} selected={obj.data.selected} choices={obj.data.choices} key={index} qid={obj.id} id={index} isNew={obj.isNew}/>
+        ));
     }
 
     return (
@@ -47,13 +64,11 @@ const Account = () => {
                 </div>
             </div>
             <div className="saved-questions">
-                <button className="button" onClick={async () => {
-                    await loadHandler();
+                <button className="button" onClick={async (event) => {
+                    await loadHandler(event);
                 }}>Load Saved</button>
                 <div className="loaded-questions">
-                    {saved.map((obj, index) => (
-                        <Answer data={obj.data} selected={obj.data.selected} choices={obj.data.choices} key={index} qid={obj.id} id={index} isNew={false}/>
-                    ))}
+                    {divs}
                 </div>
             </div>
         </div>

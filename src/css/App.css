@@ -261,4 +261,12 @@ h2 {
       -ms-flex-direction: row;
           flex-direction: row;
 }
+
+.save-clicked {
+  display: none;
+}
+
+.display-none {
+  display: none;
+}
 /*# sourceMappingURL=App.css.map */

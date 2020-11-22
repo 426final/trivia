@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {saveQuestion, unsaveQuestion} from '../firebase';
  
 export default function Answer(props) {
@@ -26,10 +26,32 @@ export default function Answer(props) {
     if (isNew) {
         conditional = <button className='save' onClick={() => {
             saveQuestion(augmentedQuestion);
+            setState(<div className="question" category={cat} type={type} difficulty={diff} id={key} qid={props.qid}>
+            <div className="content">
+                <h3>{result}</h3>
+                <label>{ques}</label>
+                <div className="options">
+                    {divs.map((div) => (div))}
+        
+                </div>
+                </div>
+                <button className='save save-clicked'>Save</button>
+            </div>);
         }}>Save</button>
     } else {
         conditional = <button className='unsave' onClick={() => {
             unsaveQuestion(props.qid);
+            setState(<div className="question" category={cat} type={type} difficulty={diff} id={key} qid={props.qid}>
+            <div className="content">
+                <h3>{result}</h3>
+                <label>{ques}</label>
+                <div className="options">
+                    {divs.map((div) => (div))}
+        
+                </div>
+                </div>
+                <button className='save save-clicked'>Unsave</button>
+            </div>);
             return;
         }}>Unsave</button>
     }    
@@ -59,17 +81,26 @@ export default function Answer(props) {
             </button>)
         }
     })
-    return (
-        <div className="question" category={cat} type={type} difficulty={diff} id={key} qid={props.qid}>
-            <div className="content">
-                <h3>{result}</h3>
-                <label>{ques}</label>
-                <div className="options">
-                    {divs.map((div) => (div))}
 
-                </div>
-            </div>
-            {conditional}
+
+    const [state, setState] = useState(<div className="question" category={cat} type={type} difficulty={diff} id={key} qid={props.qid}>
+    <div className="content">
+        <h3>{result}</h3>
+        <label>{ques}</label>
+        <div className="options">
+            {divs.map((div) => (div))}
+
         </div>
+        </div>
+        {conditional}
+    </div>);
+
+
+   
+    
+
+
+    return (
+        <div>{state}</div>
     )
 }
