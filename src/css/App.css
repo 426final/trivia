@@ -388,12 +388,13 @@ h2 {
   padding: 0;
 }
 
-.suggestions li, .suggestions em, .no-suggestions li, .no-suggestions em {
+.suggestions li, .suggestions p, .no-suggestions li, .no-suggestions p {
   width: 100%;
   padding: 1em;
 }
 
 .suggestions li:hover, .no-suggestions li:hover {
   background-color: #ffffff;
+  cursor: pointer;
 }
 /*# sourceMappingURL=App.css.map */
