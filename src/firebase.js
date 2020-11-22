@@ -85,14 +85,18 @@ const firebaseConfig = {
 
   export const getSaved = async () => {
     if (auth.currentUser == null) {
-        console.log('null');
         return;
     }
     const user = auth.currentUser.uid;
     return firestore.collection('users').doc(user).collection('saved').get()
-    // .then((value) => {
-    //     return value;
-    // })
   }
 
+  export const unsaveQuestion = async (qid) => {
+      const user = auth.currentUser.uid;
+      firestore.collection('users').doc(user).collection('saved').doc(qid).delete().then(function() {
+          console.log('question unsaved!');
+      }).catch(function(error) {
+          console.log(error);
+      });
+  }
   

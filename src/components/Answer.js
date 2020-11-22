@@ -1,5 +1,5 @@
 import React from 'react';
-import {saveQuestion} from '../firebase';
+import {saveQuestion, unsaveQuestion} from '../firebase';
  
 export default function Answer(props) {
     const info = props.data;
@@ -7,11 +7,32 @@ export default function Answer(props) {
     const type = info.type;
     const diff = info.difficulty;
     const ques = info.question;
-    const inc = info.incorrect_answers;
     const cor = info.correct_answer;
     const key = props.id;
     const choices = props.choices;
     const selected = props.selected;
+    const isNew = props.isNew;
+    const augmentedQuestion = {
+        category: cat,
+        type: type,
+        difficulty: diff,
+        question: ques,
+        correct_answer: cor,
+        choices: choices,
+        selected: selected,
+    }
+
+    let conditional = null;
+    if (isNew) {
+        conditional = <button className='save' onClick={() => {
+            saveQuestion(augmentedQuestion);
+        }}>Save</button>
+    } else {
+        conditional = <button className='unsave' onClick={() => {
+            unsaveQuestion(props.qid);
+            return;
+        }}>Unsave</button>
+    }
 
     let divs = [];
     choices.forEach((text, index) => {
@@ -30,14 +51,12 @@ export default function Answer(props) {
         }
     })
     return (
-        <div className="question" category={cat} type={type} difficulty={diff} id={key}>
+        <div className="question" category={cat} type={type} difficulty={diff} id={key} qid={props.qid}>
             <div className="content">
                 <label>{ques}</label>
                 {divs.map((div) => (div))}
             </div>
-            <button className='save' onClick={() => {
-                saveQuestion(info);
-            }}>Save</button>
+            {conditional}
         </div>
     )
 }

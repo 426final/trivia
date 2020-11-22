@@ -3,21 +3,13 @@ import { UserContext } from "../providers/UserProvider";
 import { auth, getSaved} from "../firebase";
 import { useHistory } from 'react-router-dom';
 import { deleteUser } from "../firebase";
+import Answer from '../components/Answer';
 
 
 const Account = () => {
     const {user, loaded} = useContext(UserContext);
     const history = useHistory();
-    // const [saved, setSaved] = useState(null);
-    
-    // useEffect(() => {
-    //     const response = async () => {
-    //         console.log(loaded);
-    //         const result = await getSaved();
-    //         console.log(result);
-    //     }
-    //     response();
-    // }, []);
+    const [saved, setSaved] = useState([]);
 
     if (user == null) {
         return <div></div>
@@ -27,6 +19,16 @@ const Account = () => {
  
     const deleteAccountHandler =  () => {
         deleteUser();
+    }
+
+    const loadHandler = async () => {
+        let test = [];
+        await getSaved().then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                test.push({data: doc.data(), id: doc.id});
+            });
+        });;
+        setSaved(test);
     }
 
     return (
@@ -45,36 +47,17 @@ const Account = () => {
                 </div>
             </div>
             <div className="saved-questions">
-                <button onClick={() => {
-                    getSaved().then(function(querySnapshot) {
-                        querySnapshot.forEach(function(doc) {
-                            console.log(doc.id, " => ", doc.data());
-                        });
-                    });;
+                <button className="button" onClick={async () => {
+                    await loadHandler();
                 }}>Load Saved</button>
+                <div className="loaded-questions">
+                    {saved.map((obj, index) => (
+                        <Answer data={obj.data} selected={obj.data.selected} choices={obj.data.choices} key={index} qid={obj.id} id={index} isNew={false}/>
+                    ))}
+                </div>
             </div>
         </div>
-
-        // <div className = "mx-auto w-11/12 md:w-2/4 py-8 px-4 md:px-8">
-        //   <div className="flex border flex-col items-center md:flex-row md:items-start border-blue-400 px-3 py-4">
-        //     <div
-        //       style={{
-        //         // background: `url(${photoURL || 'https://res.cloudinary.com/dqcsk8rsc/image/upload/v1577268053/avatar-1-bitmoji_upgwhc.png'})  no-repeat center center`,
-        //         backgroundSize: "cover",
-        //         height: "200px",
-        //         width: "200px"
-        //       }}
-        //       className="border border-blue-300"
-        //     ></div>
-        //     <div className = "md:pl-4">
-        //     {/* <h2 className = "text-2xl font-semibold">{displayName}</h2> */}
-        //     <h3 className = "italic">{email}</h3>
-        //     </div>
-        //   </div>
-        // </div>
       ) 
-  
-
   
 };
 

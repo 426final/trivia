@@ -12,7 +12,7 @@ export default function Feedback(props) {
     return (
         <div>
             {set.map((question, index) => (
-                <Answer data={question} selected={answers[index]} choices={choices[index]} key={counter += 1} id={counter}/>
+                <Answer data={question} selected={answers[index]} choices={choices[index]} key={counter += 1} id={counter} isNew={true}/>
             ))}
         </div>
     )
