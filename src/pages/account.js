@@ -70,7 +70,7 @@ const Account = () => {
     return (
 
         <div className="account">
-            <h1>Account</h1>
+            <h1 className="account-title">Account</h1>
             <div className="user-info">
                 <h2>User Information</h2> 
                 <div className="info-container">
@@ -83,10 +83,12 @@ const Account = () => {
                 </div>
             </div>
             <div className="saved-questions">
-                <button className="button" onClick={async (event) => {
-                    await loadHandler(event);
-                }}>Load Saved</button>
-                <Autocomplete callbackFromParent={getQuery} suggestions={suggest}/>
+                <h2>Saved Questions</h2> 
+                <div>
+                    <button className="button load-saved-btn" onClick={async (event) => {
+                        await loadHandler(event);
+                    }}>Load Saved</button>
+                </div>
                 <div className="loaded-questions">
                     {divs}
                 </div>

@@ -9,10 +9,14 @@ export default function Feedback(props) {
     let counter = 0;
 
     return (
-        <div>
-            {set.map((question, index) => (
-                <Answer data={question} selected={answers[index]} choices={choices[index]} key={counter += 1} id={counter} isNew={true}/>
-            ))}
+        <div className="question-page">
+            <h1>Results</h1>
+            <div className="question-set">
+                {set.map((question, index) => (
+                    <Answer data={question} selected={answers[index]} choices={choices[index]} key={counter += 1} id={counter} isNew={true}/>
+                ))}
+            </div>
         </div>
+        
     )
 }

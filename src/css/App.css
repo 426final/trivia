@@ -143,12 +143,21 @@ h2 {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding: 1em 4em;
 }
 
-.account .user-info {
+@media (min-width: 768px) {
+  .account .account-title {
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+  }
+}
+
+.account .user-info, .account .saved-questions {
   margin-top: 1em;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -159,7 +168,11 @@ h2 {
           flex-direction: column;
 }
 
-.account .user-info .info-container {
+.account .user-info .load-saved-btn, .account .saved-questions .load-saved-btn {
+  margin-top: 1em;
+}
+
+.account .user-info .info-container, .account .saved-questions .info-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -171,7 +184,7 @@ h2 {
 }
 
 @media (min-width: 768px) {
-  .account .user-info .info-container {
+  .account .user-info .info-container, .account .saved-questions .info-container {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
@@ -179,30 +192,33 @@ h2 {
   }
 }
 
-.account .user-info .info-container .info-item {
+.account .user-info .info-container .info-item, .account .saved-questions .info-container .info-item {
   margin-bottom: 2em;
 }
 
 @media (min-width: 768px) {
-  .account .user-info .info-container .info-item {
+  .account .user-info .info-container .info-item, .account .saved-questions .info-container .info-item {
     margin-right: 2em;
   }
 }
 
-.account .user-info .info-container .user-field {
+.account .user-info .info-container .user-field, .account .saved-questions .info-container .user-field {
   background-color: #f5f5f5;
   border-radius: 25px;
   padding: .75em 2em;
+}
+
+.account .user-info .loaded-questions, .account .saved-questions .loaded-questions {
+  margin-top: 1em;
 }
 
 .answer {
   padding: .75em 2em;
   color: #7947E8;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
   border: none;
   border-radius: 25px;
-  -webkit-box-shadow: 3px 3px 10px 1px #c0c0c0;
-          box-shadow: 3px 3px 10px 1px #c0c0c0;
+  margin-right: 1em;
 }
 
 .answer:focus {
@@ -213,9 +229,29 @@ h2 {
   background-color: #e0e0e0;
 }
 
+.answer-return {
+  margin-right: 1em;
+  padding: .75em 2em;
+  color: #7947E8;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 25px;
+}
+
+.answer-return:focus {
+  outline: none;
+}
+
+.answer-return:hover {
+  outline: none;
+  cursor: default;
+}
+
 .selected {
   background-color: #7947E8;
   color: #f5f5f5;
+  -webkit-box-shadow: 3px 3px 10px 1px #c2c2c2;
+          box-shadow: 3px 3px 10px 1px #c2c2c2;
 }
 
 .selected:focus {
@@ -229,6 +265,8 @@ h2 {
 .correct {
   background-color: #93EB8F;
   color: white;
+  -webkit-box-shadow: 3px 3px 10px 1px #c2c2c2;
+          box-shadow: 3px 3px 10px 1px #c2c2c2;
 }
 
 .incorrect {
@@ -236,10 +274,37 @@ h2 {
   color: white;
 }
 
+.question-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.question-set {
+  width: 70%;
+}
+
 .question {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: #f5f5f5;
+  margin: 1em 0;
+  padding: 3em;
 }
 
 .question .content {
@@ -260,6 +325,19 @@ h2 {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  margin-top: 1em;
+}
+
+.save, .unsave {
+  padding: .75em 2em;
+  color: #ffffff;
+  background-color: #7947E8;
+  border: none;
+  margin-top: 1.5em;
+}
+
+.save:hover, .unsave:hover {
+  background-color: #969696;
 }
 
 .save-clicked {
@@ -268,5 +346,10 @@ h2 {
 
 .display-none {
   display: none;
+}
+
+.submit-answers {
+  margin-top: 1em;
+  margin-bottom: 2em;
 }
 /*# sourceMappingURL=App.css.map */

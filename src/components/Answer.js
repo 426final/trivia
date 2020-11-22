@@ -68,15 +68,15 @@ export default function Answer(props) {
     let divs = [];
     choices.forEach((text, index) => {
         if (text == cor) {
-            divs.push(<button key={index} className="correct answer" >
+            divs.push(<button key={index} className="correct answer-return" >
                 {text}
             </button>)
         } else if (text !== cor && text == selected) {
-            divs.push(<button key={index} className="incorrect answer">
+            divs.push(<button key={index} className="incorrect answer-return">
                 {text}
             </button>)
         } else {
-            divs.push(<button key={index} className="answer">
+            divs.push(<button key={index} className="answer-return">
                 {text}
             </button>)
         }
@@ -91,7 +91,9 @@ export default function Answer(props) {
 
         </div>
         </div>
-        {conditional}
+        <div>
+            {conditional}
+        </div>
     </div>);
 
     return (

@@ -39,8 +39,11 @@ export default function Question(props) {
     })
     return (
         <div className="question" category={cat} type={type} difficulty={diff} id={key}>
-            <label>{ques}</label>
-            {divs.map((div) => (div))}
+            <h4>{ques}</h4>
+            <div className="options">
+                {divs.map((div) => (div))}
+
+            </div>
         </div>
     )
 }
