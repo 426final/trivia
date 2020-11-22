@@ -89,7 +89,7 @@ const Account = () => {
                         await loadHandler(event);
                     }}>Load Saved</button>
                 </div>
-                <Autocomplete callbackFromParent={getQuery} suggestions={suggest}/>
+                <Autocomplete callbackFromParent={getQuery} suggestions={suggest} />
                 <div className="loaded-questions">
                     {divs}
                 </div>
