@@ -86,6 +86,18 @@ class Autocomplete extends Component {
     }
   };
 
+  debounce = (fn, delay) => {
+      let timeoutID;
+      return function(...args) {
+        if(timeoutID) {
+            clearTimeout(timeoutID)
+        }
+        timeoutID = setTimeout(() => {
+            fn(...args)
+        }, delay)
+      }
+  };
+
   render() {
     const {
       onChange,
@@ -128,7 +140,7 @@ class Autocomplete extends Component {
       } else {
         suggestionsListComponent = (
           <div className="no-suggestions">
-            <em>No suggestions, you're on your own!</em>
+            <p>No suggestions, you're on your own!</p>
           </div>
         );
       }
