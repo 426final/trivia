@@ -2,6 +2,8 @@
 import firebase from "firebase/app";
 import 'firebase/firestore';
 import 'firebase/auth';
+import {UserContext} from './providers/UserProvider';
+import {useContext} from 'react';
 import { functions } from 'firebase';
 import { useRouteMatch } from "react-router-dom";
 
@@ -77,9 +79,20 @@ const firebaseConfig = {
   }
 
   export const saveQuestion = async (question) => {
-      firestore.collection('users/' + userAuth.uid).add(
-        
-      )
+      const user = auth.currentUser.uid;
+      firestore.collection('users').doc(user).collection('saved').add(question);
+  }
+
+  export const getSaved = async () => {
+    if (auth.currentUser == null) {
+        console.log('null');
+        return;
+    }
+    const user = auth.currentUser.uid;
+    return firestore.collection('users').doc(user).collection('saved').get()
+    // .then((value) => {
+    //     return value;
+    // })
   }
 
   
