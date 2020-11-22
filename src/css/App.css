@@ -194,4 +194,71 @@ h2 {
   border-radius: 25px;
   padding: .75em 2em;
 }
+
+.answer {
+  padding: .75em 2em;
+  color: #7947E8;
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 25px;
+  -webkit-box-shadow: 3px 3px 10px 1px #c0c0c0;
+          box-shadow: 3px 3px 10px 1px #c0c0c0;
+}
+
+.answer:focus {
+  outline: none;
+}
+
+.answer:hover {
+  background-color: #e0e0e0;
+}
+
+.selected {
+  background-color: #7947E8;
+  color: #f5f5f5;
+}
+
+.selected:focus {
+  outline: none;
+}
+
+.selected:hover {
+  background-color: #7947E8;
+}
+
+.correct {
+  background-color: #93EB8F;
+  color: white;
+}
+
+.incorrect {
+  background-color: #EB628C;
+  color: white;
+}
+
+.question {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.question .content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
 /*# sourceMappingURL=App.css.map */

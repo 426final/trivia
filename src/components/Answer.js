@@ -11,6 +11,14 @@ export default function Answer(props) {
     const key = props.id;
     const choices = props.choices;
     const selected = props.selected;
+    let result = '';
+    if (selected == cor) {
+        result = 'Correct!';
+    } else if (selected == '') {
+        result = 'Unanswered';
+    } else {
+        result = 'Incorrect';
+    }
 
     let divs = [];
     choices.forEach((text, index) => {
@@ -29,10 +37,15 @@ export default function Answer(props) {
         }
     })
     return (
+    
         <div className="question" category={cat} type={type} difficulty={diff} id={key}>
             <div className="content">
+                <h3>{result}</h3>
                 <label>{ques}</label>
-                {divs.map((div) => (div))}
+                <div className="options">
+                    {divs.map((div) => (div))}
+
+                </div>
             </div>
             <button className='save' onClick={(info) => {
                 
