@@ -35,11 +35,7 @@ export default function QuestionSet(props) {
             test.push(he.decode(answer));
         })
         question.incorrect_answers = test;
-        // question.incorrect_answers = question.incorrect_answers.map((answerText) => {
-        //     he.decode(answerText);
-        // })
     })
-    console.log(set);
 
     let counter = 0;
     let selected_answers = Array(props.data.length).fill("");
