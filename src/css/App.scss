@@ -175,7 +175,12 @@ h2 {
     background-color: #ffffff;
     border: none;
     border-radius: 25px;
-    margin-right: 1em;
+    margin-bottom: 1em;
+    
+    @include tablet {
+        margin-right: 1em;
+        margin-bottom: 0;
+    }
 }
 
 .answer:focus {
@@ -188,13 +193,17 @@ h2 {
 
 
 .answer-return {
-    margin-right: 1em;
     padding: .75em 2em;
     color:  #7947E8;
     background-color: #ffffff;
     border: none;
     border-radius: 25px;
-    
+    margin-bottom: 1em;
+    @include tablet {
+        margin-right: 1em;
+        margin-bottom: 0;
+
+    }
 }
 
 .answer-return:focus {
@@ -247,6 +256,10 @@ h2 {
 
 .question-set {
     width: 70%;
+
+    @include tablet {
+        width: 80%;
+    }
 }
 
 
@@ -266,23 +279,29 @@ h2 {
 }
 
 .options {
+
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin-top: 1em;
+
+    @include tablet {
+        flex-direction: row;
+    }
+   
     
 }
 
 .save, .unsave {
     padding: .75em 2em;
-    color:  #ffffff;
-    background-color: #7947E8;
+    color:  #7947E8;
+    background-color: #ffffff;
     border: none;
-    
+
     margin-top: 1.5em;
 }
 
 .save:hover, .unsave:hover {
-    background-color: #969696;
+    background-color: #d3d3d3;
 
 }
 
@@ -297,4 +316,20 @@ h2 {
 .submit-answers {
     margin-top: 1em;
     margin-bottom: 2em;
+}
+
+.suggestions, .no-suggestions {
+    list-style-type: none;
+    background-color: #f5f5f5;
+    padding: 0;
+    
+    li, em {
+        width: 100%;
+        padding: 1em;
+    }
+    li:hover {
+        background-color: #ffffff;
+        
+        
+    }
 }
