@@ -2,7 +2,7 @@ import React from "react";
 import Header from '../components/header';
 import { useState } from "react";
 import { auth } from "../firebase";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
 
 
@@ -11,27 +11,32 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
+    const history = useHistory();
 
     const signInWithEmailAndPasswordHandler = (event,email, password) => {
         event.preventDefault();
-        auth.signInWithEmailAndPassword(email, password).catch(error => {
-        setError("Error signing in with password and email!");
+        auth.signInWithEmailAndPassword(email, password)
+          .then(() => {
+            console.log('success');
+            history.push('/account');
+          })
+          .catch(error => {
+          setError("Error signing in with password and email!");
           console.error("Error signing in with password and email", error);
         });
       };
       
-      const onChangeHandler = (event) => {
-          const {name, value} = event.currentTarget;
-        
-          if(name === 'userEmail') {
-              setEmail(value);
-          }
-          else if(name === 'userPassword'){
-            setPassword(value);
-          }
-      };
+    const onChangeHandler = (event) => {
+        const {name, value} = event.currentTarget;
+        if(name === 'userEmail') {
+            setEmail(value);
+        }
+        else if(name === 'userPassword'){
+          setPassword(value);
+        }
+    };
 
-      const history = useHistory();
+   
       
    
 
@@ -65,9 +70,10 @@ export default function Login() {
             id="userPassword"
             onChange = {(event) => onChangeHandler(event)}
           />
-          <button className="button"  onClick = {(event) => {
+          <button className="button" type="submit" onClick = {(event) => {
+              event.preventDefault();
               signInWithEmailAndPasswordHandler(event, email, password);
-              history.push('/account');
+              //history.push('/account');
               }}>
             Log in
           </button>
