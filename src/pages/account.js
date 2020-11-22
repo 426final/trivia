@@ -44,7 +44,7 @@ const Account = () => {
     if (saved.length == 0 && bool) {
         divs = '';
     } else if (saved.length == 0) {
-        divs = <div><h4>No questions saved.</h4></div>
+        divs = <div><h4>No results found.</h4></div>
     } else {
         divs = saved.map((obj, index) => (
             <Answer data={obj.data} selected={obj.data.selected} choices={obj.data.choices} key={index} qid={obj.id} id={index} isNew={obj.isNew}/>
@@ -89,6 +89,7 @@ const Account = () => {
                         await loadHandler(event);
                     }}>Load Saved</button>
                 </div>
+                <Autocomplete callbackFromParent={getQuery} suggestions={suggest}/>
                 <div className="loaded-questions">
                     {divs}
                 </div>
