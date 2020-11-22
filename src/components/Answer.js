@@ -82,7 +82,6 @@ export default function Answer(props) {
         }
     })
 
-
     const [state, setState] = useState(<div className="question" category={cat} type={type} difficulty={diff} id={key} qid={props.qid}>
     <div className="content">
         <h3>{result}</h3>
@@ -94,11 +93,6 @@ export default function Answer(props) {
         </div>
         {conditional}
     </div>);
-
-
-   
-    
-
 
     return (
         <div>{state}</div>

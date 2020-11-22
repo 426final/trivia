@@ -4,13 +4,14 @@ import { auth, getSaved} from "../firebase";
 import { useHistory } from 'react-router-dom';
 import { deleteUser } from "../firebase";
 import Answer from '../components/Answer';
+import Autocomplete from '../components/Autocomplete';
 
 
 const Account = () => {
     const {user, loaded} = useContext(UserContext);
     const history = useHistory();
     const [saved, setSaved] = useState([]);
-    const [answer, setAnswer] = useState('');
+    const [all, setAll] = useState([]);
    
     const [bool, setBool] = useState(true);
 
@@ -33,11 +34,13 @@ const Account = () => {
                 test.push({data: doc.data(), id: doc.id, isNew: false});
             });
             setSaved(test);
+            setAll(test);
         });;
         setBool(false);
     }
     
     let divs = [];
+    let suggest = [];
     if (saved.length == 0 && bool) {
         divs = '';
     } else if (saved.length == 0) {
@@ -46,6 +49,22 @@ const Account = () => {
         divs = saved.map((obj, index) => (
             <Answer data={obj.data} selected={obj.data.selected} choices={obj.data.choices} key={index} qid={obj.id} id={index} isNew={obj.isNew}/>
         ));
+        all.map((obj) => {
+            suggest.push(obj.data.question);
+        });
+    }
+
+    const getQuery = (stateVar) => {
+        let query = stateVar.userInput;
+        console.log(query);
+        let returnval = [];
+
+        all.forEach((question) => {
+            if (question.data.question.includes(query)) {
+                returnval.push(question);
+            }
+        })
+        setSaved(returnval);
     }
 
     return (
@@ -67,6 +86,7 @@ const Account = () => {
                 <button className="button" onClick={async (event) => {
                     await loadHandler(event);
                 }}>Load Saved</button>
+                <Autocomplete callbackFromParent={getQuery} suggestions={suggest}/>
                 <div className="loaded-questions">
                     {divs}
                 </div>

@@ -17,7 +17,6 @@ export default function Login() {
         event.preventDefault();
         auth.signInWithEmailAndPassword(email, password)
           .then(() => {
-            console.log('success');
             history.push('/account');
           })
           .catch(error => {
