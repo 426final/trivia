@@ -29,6 +29,15 @@ export default function QuestionSet(props) {
     console.log(set);
     set.forEach(question => {
         question.question = he.decode(question.question);
+        question.correct_answer = he.decode(question.correct_answer);
+        let test = [];
+        question.incorrect_answers.map((answer) => {
+            test.push(he.decode(answer));
+        })
+        question.incorrect_answers = test;
+        // question.incorrect_answers = question.incorrect_answers.map((answerText) => {
+        //     he.decode(answerText);
+        // })
     })
     console.log(set);
 
@@ -41,7 +50,6 @@ export default function QuestionSet(props) {
     const getAnswer = (data, index, answer_choices) => {
         selected_answers[index-1] = data;
         all_choices[index-1] = answer_choices
-        console.log(index, data);
     }
     
     const submitHandler = () => {
