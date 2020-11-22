@@ -3,6 +3,7 @@ import firebase from "firebase/app";
 import 'firebase/firestore';
 import 'firebase/auth';
 import { functions } from 'firebase';
+import { useRouteMatch } from "react-router-dom";
 
 const firebaseConfig = {
     apiKey: "AIzaSyCYifVeHTnhB0NWe-wT4yKm8CAjNju5B50",
@@ -73,6 +74,12 @@ const firebaseConfig = {
       console.log(error);
     });
 
+  }
+
+  export const saveQuestion = async (question) => {
+      firestore.collection('users/' + userAuth.uid).add(
+        
+      )
   }
 
   

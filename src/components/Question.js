@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import Answers from './Answers';
-
+import Answers from './Answer';
 
 export default function Question(props) {
     const info = props.data;
@@ -11,12 +10,12 @@ export default function Question(props) {
     const inc = info.incorrect_answers;
     const cor = info.correct_answer;
     const key = props.id;
-    const answers = [...inc, cor];
+    const answers = props.shuffled;
     const [selected, setSelected] = useState('');
     let divs = [];
 
     const sendSelected = () => {
-        props.callbackFromParent(selected, key);
+        props.callbackFromParent(selected, key, answers);
     }
 
     useEffect(() => {
@@ -41,7 +40,6 @@ export default function Question(props) {
     return (
         <div className="question" category={cat} type={type} difficulty={diff} id={key}>
             <label>{ques}</label>
-            {/* <Answers type={type} cor={cor} inc={inc} key={key}/> */}
             {divs.map((div) => (div))}
         </div>
     )
