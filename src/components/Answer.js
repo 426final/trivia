@@ -28,8 +28,8 @@ export default function Answer(props) {
             saveQuestion(augmentedQuestion);
             setState(<div className="question" category={cat} type={type} difficulty={diff} id={key} qid={props.qid}>
             <div className="content">
-                <h3>{result}</h3>
-                <label>{ques}</label>
+                <p>{result}</p>
+                <h4>{ques}</h4>
                 <div className="options">
                     {divs.map((div) => (div))}
         
@@ -43,8 +43,8 @@ export default function Answer(props) {
             unsaveQuestion(props.qid);
             setState(<div className="question" category={cat} type={type} difficulty={diff} id={key} qid={props.qid}>
             <div className="content">
-                <h3>{result}</h3>
-                <label>{ques}</label>
+                <p>{result}</p>
+                <h4>{ques}</h4>
                 <div className="options">
                     {divs.map((div) => (div))}
         
