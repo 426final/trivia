@@ -22,6 +22,7 @@ class Autocomplete extends Component {
     };
   }
   sendStateVar = () => {
+    console.log(this.state);
       this.props.callbackFromParent(this.state);
   }
   // Event fired when the input value is changed
@@ -143,17 +144,21 @@ class Autocomplete extends Component {
 
     return (
       <Fragment>
-        <input
-          type="text"
-          onChange={onChange}
-          onKeyDown={onKeyDown}
-          value={userInput}
-        />
-        <button type="submit" onClick={() => {
-            this.buttonHandler();
-        }}>Search</button>
-
-        {suggestionsListComponent}
+        <div className="search-div">
+          <div className="search-header">
+              <input
+                  type="text"
+                  onChange={onChange}
+                  onKeyDown={onKeyDown}
+                  value={userInput}
+                />
+                <button className="search-btn" type="submit" onClick={() => {
+                    this.buttonHandler();
+                }}><i class="fas fa-search"></i></button>
+          </div>
+            {suggestionsListComponent}
+        </div>
+        
       </Fragment>
     );
   }

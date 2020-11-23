@@ -17,6 +17,7 @@ import Play from './pages/play';
 import PasswordReset from './pages/passwordReset'
 import UserProvider from './providers/UserProvider';
 import Feedback from './pages/feedback';
+import ScrollToTop from './components/ScrollToTop'
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
     <div>
       <UserProvider>
       <Router>
+        <ScrollToTop>
         <Application />
         <Switch>
             <Route exact path='/' component={Home}/>
@@ -37,6 +39,7 @@ function App() {
 
             
         </Switch>
+        </ScrollToTop>
       </Router>
       </UserProvider>
     </div>

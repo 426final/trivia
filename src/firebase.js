@@ -85,6 +85,7 @@ const firebaseConfig = {
 
   export const getSaved = async () => {
     if (auth.currentUser == null) {
+         
         return;
     }
     const user = auth.currentUser.uid;
@@ -99,4 +100,5 @@ const firebaseConfig = {
           console.log(error);
       });
   }
+  
   

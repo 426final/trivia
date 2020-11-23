@@ -24,7 +24,7 @@ export default function Application() {
 const {user, loaded} = useContext(UserContext);
 
   return (
-    !loaded ? <div></div> : 
+    !loaded ? <div class="blank-header"></div> : 
       (user ?
         <Header2 />
       :

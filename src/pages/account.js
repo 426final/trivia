@@ -1,23 +1,42 @@
 import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../providers/UserProvider";
-import { auth, getSaved} from "../firebase";
+import { getSaved} from "../firebase";
 import { useHistory } from 'react-router-dom';
 import { deleteUser } from "../firebase";
 import Answer from '../components/Answer';
 import Autocomplete from '../components/Autocomplete';
 
-
 const Account = () => {
-    const {user, loaded} = useContext(UserContext);
+    useContext(UserContext);
+   
     const history = useHistory();
     const [saved, setSaved] = useState([]);
     const [all, setAll] = useState([]);
-   
     const [bool, setBool] = useState(true);
+    const {user, loaded} = useContext(UserContext);
+    const [searchCheck, setSearchCheck] = useState(false);
+    
+    let search = <div></div>;
 
-    if (user == null) {
-        return <div></div>
-    } 
+    const loadHandler = async () => {
+        let test = [];
+        
+        await getSaved().then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                test.push({data: doc.data(), id: doc.id, isNew: false});
+            });
+            setSaved([...test]);
+            setAll([...test]);
+        });
+        setSearchCheck(true);
+        setBool(false);
+    }
+  
+    
+    if (!loaded || user==null) {
+        return <div className="loading">Loading...</div>;
+    }
+  
 
     const {email} = user;
  
@@ -25,19 +44,6 @@ const Account = () => {
         deleteUser();
     }
 
-    const loadHandler = async (event) => {
-        event.target.classList.add('display-none');
-        let test = [];
-        
-        await getSaved().then(function(querySnapshot) {
-            querySnapshot.forEach(function(doc) {
-                test.push({data: doc.data(), id: doc.id, isNew: false});
-            });
-            setSaved(test);
-            setAll(test);
-        });;
-        setBool(false);
-    }
     
     let divs = [];
     let suggest = [];
@@ -46,10 +52,11 @@ const Account = () => {
     } else if (saved.length == 0) {
         divs = <div><h4>No results found.</h4></div>
     } else {
+        divs = [];
         divs = saved.map((obj, index) => (
-            <Answer data={obj.data} selected={obj.data.selected} choices={obj.data.choices} key={index} qid={obj.id} id={index} isNew={obj.isNew}/>
+            <Answer data={obj.data} selected={obj.data.selected} choices={obj.data.choices} key={obj.id} qid={obj.id} id={index} isNew={obj.isNew}/>
         ));
-        all.map((obj) => {
+        all.forEach((obj) => {
             suggest.push(obj.data.question);
         });
     }
@@ -63,9 +70,12 @@ const Account = () => {
                 returnval.push(question);
             }
         })
-        setSaved(returnval);
+        setSaved([...returnval]);
     }
 
+    if (searchCheck) {
+        search = <Autocomplete callbackFromParent={getQuery} suggestions={suggest} />
+    } 
     return (
 
         <div className="account">
@@ -88,7 +98,7 @@ const Account = () => {
                         await loadHandler(event);
                     }}>Load Saved</button>
                 </div>
-                <Autocomplete callbackFromParent={getQuery} suggestions={suggest} />
+                {search}
                 <div className="loaded-questions">
                     {divs}
                 </div>

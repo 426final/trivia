@@ -96,7 +96,7 @@ body {
     background-color:#EB628C;
     border: none;
     border-radius: 25px;
-    box-shadow: 3px 3px 10px 1px #c0c0c0;
+    box-shadow: 3px 3px 10px 1px #c2c2c2;
 }
 
 .button:hover{
@@ -134,6 +134,7 @@ h2 {
         margin-top: 1em;
         display: flex;
         flex-direction: column;
+        width: 100%;
         
         .load-saved-btn {
             margin-top: 1em;
@@ -322,6 +323,7 @@ h2 {
     list-style-type: none;
     background-color: #f5f5f5;
     padding: 0;
+    width: 60%;
     
     li, p {
         width: 100%;
@@ -333,3 +335,40 @@ h2 {
         
     }
 }
+
+.blank-header {
+    height:10.4vh;
+}
+
+.search-btn {
+    padding: .75em 2em;
+    color: white;
+    background-color:#7947E8;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 3px 3px 10px 1px #c2c2c2;
+}
+
+.button:hover{
+    background-color: #B548EF;
+}
+
+.search-div {
+    display: flex;
+    flex-direction: column;
+    margin: 2em 0;
+    width: 100%;
+}
+
+.search-header {
+    display: flex;
+    flex-direction: row;
+    
+    input {
+        width:  60%;
+        margin-right: 1em;
+    }
+
+    
+}
+
