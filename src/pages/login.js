@@ -72,7 +72,6 @@ export default function Login() {
           <button className="button" type="submit" onClick = {(event) => {
               event.preventDefault();
               signInWithEmailAndPasswordHandler(event, email, password);
-              //history.push('/account');
               }}>
             Log in
           </button>

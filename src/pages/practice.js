@@ -11,6 +11,7 @@ export default function Practice() {
         difficulty: "any",
         type: "any"
     })
+    const [error, setError] = useState(null);
     let output = [];
 
     const updateFormData = event => {
@@ -29,6 +30,9 @@ export default function Practice() {
         let url = 'https://opentdb.com/api.php?amount=';
         if (int <= 50 && int >= 1) {
             url += formData.questions;
+        } else {
+            setError("Questions out of range!");
+            return;
         }
         if (formData.category != 'any') {
             url += '&category=' + formData.category;
@@ -45,6 +49,10 @@ export default function Practice() {
         })
         let data = await result.data.results;
         output = await data;
+        history.push({
+            pathname: '/play',
+            state: output
+        });
     }
 
 
@@ -54,6 +62,7 @@ export default function Practice() {
             <div className="form-div mt-8">
                 <div className="form-border">
                 <form className="form">
+                {error !== null && <div className = "py-4 bg-red-600 w-full  text-center mb-3">{error}</div>}
                     <label htmlFor="questions">
                         Number of Question (1-50):
                     </label>
@@ -130,10 +139,6 @@ export default function Practice() {
                     </select>    
                     <button className="button" type="submit" onClick={async e => {
                         await handleSubmit(e);
-                        history.push({
-                            pathname: '/play',
-                            state: output
-                        });
                     }} >
                         Start Playing
                     </button>

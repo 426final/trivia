@@ -55,9 +55,9 @@ export default function QuestionSet(props) {
     }
 
     return(
-        <div class="question-page">
+        <div className="question-page">
             <h1>Play!</h1>
-            <div class="question-set">
+            <div className="question-set">
                 {props.data.map(question => (
                     <Question callbackFromParent={getAnswer} shuffled={shuffle([...question.incorrect_answers, question.correct_answer])} data={question} key={counter += 1} id={counter}/>
                 ))}
