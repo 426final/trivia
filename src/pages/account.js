@@ -34,7 +34,7 @@ const Account = () => {
   
     
     if (!loaded || user==null) {
-        return <div className="loading">Loading...</div>;
+        return <div className="loading"><span>Loading...</span></div>;
     }
   
 
