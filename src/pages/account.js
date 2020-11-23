@@ -56,7 +56,6 @@ const Account = () => {
 
     const getQuery = (stateVar) => {
         let query = stateVar.userInput;
-        console.log(query);
         let returnval = [];
 
         all.forEach((question) => {

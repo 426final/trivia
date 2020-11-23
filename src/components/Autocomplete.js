@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import {debounce} from 'lodash';
 import PropTypes from "prop-types";
 
 class Autocomplete extends Component {
@@ -21,7 +22,6 @@ class Autocomplete extends Component {
     };
   }
   sendStateVar = () => {
-      console.log('callback');
       this.props.callbackFromParent(this.state);
   }
   // Event fired when the input value is changed
@@ -86,26 +86,12 @@ class Autocomplete extends Component {
       this.setState({ activeSuggestion: activeSuggestion + 1 });
     }
   };
-
-  debounce = (fn, delay) => {
-      console.log('hi');
-      let timeoutID;
-      console.log('hi2');
-      return function(...args) {
-        console.log('hi3');
-        if(timeoutID) {
-            clearTimeout(timeoutID);
-        }
-        timeoutID = setTimeout(() => {
-            fn(...args)
-        }, delay)
-      }
-  };
   
-  buttonHandler = () => {
+  buttonHandler = debounce(() => {
+    console.log('hi')
     this.sendStateVar();
     this.setState({userInput: ''})
-  }
+  }, 500);
 
   render() {
     const {
@@ -164,7 +150,7 @@ class Autocomplete extends Component {
           value={userInput}
         />
         <button type="submit" onClick={() => {
-            this.debounce(this.buttonHandler(), 500);
+            this.buttonHandler();
         }}>Search</button>
 
         {suggestionsListComponent}
