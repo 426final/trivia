@@ -21,6 +21,7 @@ class Autocomplete extends Component {
     };
   }
   sendStateVar = () => {
+      console.log('callback');
       this.props.callbackFromParent(this.state);
   }
   // Event fired when the input value is changed
@@ -87,16 +88,24 @@ class Autocomplete extends Component {
   };
 
   debounce = (fn, delay) => {
+      console.log('hi');
       let timeoutID;
+      console.log('hi2');
       return function(...args) {
+        console.log('hi3');
         if(timeoutID) {
-            clearTimeout(timeoutID)
+            clearTimeout(timeoutID);
         }
         timeoutID = setTimeout(() => {
             fn(...args)
         }, delay)
       }
   };
+  
+  buttonHandler = () => {
+    this.sendStateVar();
+    this.setState({userInput: ''})
+  }
 
   render() {
     const {
@@ -155,8 +164,7 @@ class Autocomplete extends Component {
           value={userInput}
         />
         <button type="submit" onClick={() => {
-            this.sendStateVar();
-            this.setState({userInput: ''})
+            this.debounce(this.buttonHandler(), 500);
         }}>Search</button>
 
         {suggestionsListComponent}
